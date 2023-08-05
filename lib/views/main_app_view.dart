@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tt9_betweener_challenge/views/add_new_link.dart';
 import 'package:tt9_betweener_challenge/views/home_view.dart';
 import 'package:tt9_betweener_challenge/views/profile_view.dart';
 import 'package:tt9_betweener_challenge/views/receive_view.dart';
 import 'package:tt9_betweener_challenge/views/widgets/custom_floating_nav_bar.dart';
+
+import '../constants.dart';
 
 class MainAppView extends StatefulWidget {
   static String id = '/mainAppView';
@@ -25,11 +28,6 @@ class _MainAppViewState extends State<MainAppView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
       body: screensList[_currentIndex],
       extendBody: true,
       bottomNavigationBar: CustomFloatingNavBar(
@@ -40,6 +38,23 @@ class _MainAppViewState extends State<MainAppView> {
           });
         },
       ),
+      floatingActionButton: _currentIndex == 2
+          ? FloatingActionButton(
+              shape: const CircleBorder(),
+              backgroundColor: kPrimaryColor,
+              onPressed: () {
+                Navigator.pushNamed(context, AddNewLink.id).then((value) {
+                  setState(() {
+                    _currentIndex = 2;
+                  });
+                });
+              },
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            )
+          : null,
     );
   }
 }
