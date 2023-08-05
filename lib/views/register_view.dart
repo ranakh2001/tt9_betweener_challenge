@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tt9_betweener_challenge/assets.dart';
+import 'package:tt9_betweener_challenge/controller/auth_controller.dart';
 import 'package:tt9_betweener_challenge/views/widgets/custom_text_form_field.dart';
 import 'package:tt9_betweener_challenge/views/widgets/secondary_button_widget.dart';
 
 import '../../views/widgets/google_button_widget.dart';
+import '../models/user.dart';
+import 'main_app_view.dart';
 
 class RegisterView extends StatefulWidget {
   static String id = '/registerView';
@@ -23,6 +27,32 @@ class _RegisterViewState extends State<RegisterView> {
   TextEditingController passwordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
+  registerUser() {
+    if (_formKey.currentState!.validate()) {
+      final body = {
+        'name': nameController.text,
+        'email': emailController.text,
+        'password': passwordController.text,
+        'password_confirmation': passwordController.text
+      };
+      register(body).then((user) async {
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('user', userToJson(user));
+        if (mounted) {
+          Navigator.pushNamed(context, MainAppView.id);
+        }
+      }).catchError((error) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+            error.toString(),
+            style: const TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.red,
+        ));
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,11 +114,7 @@ class _RegisterViewState extends State<RegisterView> {
                   const SizedBox(
                     height: 24,
                   ),
-                  SecondaryButtonWidget(
-                      onTap: () {
-                        if (_formKey.currentState!.validate()) {}
-                      },
-                      text: 'REGISTER'),
+                  SecondaryButtonWidget(onTap: registerUser, text: 'REGISTER'),
                   const SizedBox(
                     height: 12,
                   ),

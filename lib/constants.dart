@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 //endpoints
 const baseURl = "http://osamapro.online/api";
 const loginUrl = "$baseURl/login";
+const registerUrl = "$baseURl/register";
 const linksUrl = "$baseURl/links";
 const searchUrl = "$baseURl/search";
 const followUrl = "$baseURl/follow";

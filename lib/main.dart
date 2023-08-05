@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
       home: const LoadingView(),
       
       routes: {
+        OnBoardingView.id:(context)=> const OnBoardingView(),
         LoadingView.id: (context) => const LoadingView(),
         LoginView.id: (context) => const LoginView(),
         RegisterView.id: (context) => const RegisterView(),
