@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tt9_betweener_challenge/views/friend_profile.dart';
 import 'package:tt9_betweener_challenge/views/home_view.dart';
 import 'package:tt9_betweener_challenge/views/loading.dart';
 import 'package:tt9_betweener_challenge/views/login_view.dart';
@@ -38,6 +37,7 @@ class MyApp extends StatelessWidget {
           ),
           scaffoldBackgroundColor: kScaffoldColor),
       home: const LoadingView(),
+      
       routes: {
         LoadingView.id: (context) => const LoadingView(),
         LoginView.id: (context) => const LoginView(),
@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
         ProfileView.id: (context) => const ProfileView(),
         ReceiveView.id: (context) => const ReceiveView(),
         AddNewLink.id: (context) => const AddNewLink(),
+        
       },
       
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:tt9_betweener_challenge/controller/follow_controller.dart';
 import 'package:tt9_betweener_challenge/models/follow.dart';
+import 'package:tt9_betweener_challenge/views/edit_link_screen.dart';
 import '../constants.dart';
 import '../controller/link_controller.dart';
 import '../controller/user_controller.dart';
@@ -196,7 +197,19 @@ class _ProfileViewState extends State<ProfileView> {
                                   motion: const StretchMotion(),
                                   children: [
                                     SlidableAction(
-                                      onPressed: (context) {},
+                                      onPressed: (context) {
+                                        Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        EditLinkScreen(
+                                                            link: link!)))
+                                            .then((value) {
+                                          setState(() {
+                                            links = getLinks(context);
+                                          });
+                                        });
+                                      },
                                       icon: Icons.edit,
                                       backgroundColor: kSecondaryColor,
                                       borderRadius: BorderRadius.circular(20),
@@ -205,7 +218,31 @@ class _ProfileViewState extends State<ProfileView> {
                                       width: 5,
                                     ),
                                     SlidableAction(
-                                      onPressed: (context) {},
+                                      onPressed: (context) {
+                                        deleteLink(link!.id!).then((value) {
+                                          setState(() {
+                                            links = getLinks(context);
+                                          });
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(const SnackBar(
+                                            content: Text(
+                                              "Deleted successfully",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          ));
+                                        }).catchError((err) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            content: Text(
+                                              err.toString(),
+                                              style: const TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                            backgroundColor: Colors.red,
+                                          ));
+                                        });
+                                      },
                                       icon: Icons.delete,
                                       backgroundColor: kDangerColor,
                                       borderRadius: BorderRadius.circular(20),

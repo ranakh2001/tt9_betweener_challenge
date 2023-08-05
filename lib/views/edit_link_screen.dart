@@ -1,46 +1,37 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
+import 'package:tt9_betweener_challenge/models/link.dart';
 import 'package:tt9_betweener_challenge/views/widgets/custom_text_form_field.dart';
 import 'package:tt9_betweener_challenge/views/widgets/secondary_button_widget.dart';
 
 import '../controller/link_controller.dart';
 
-class AddNewLink extends StatefulWidget {
-  static String id = '/newLink';
-  const AddNewLink({super.key});
+// ignore: must_be_immutable
+class EditLinkScreen extends StatefulWidget {
+  Link link;
+  static String id = '/editLink';
+  EditLinkScreen({
+    Key? key,
+    required this.link,
+  }) : super(key: key);
 
   @override
-  State<AddNewLink> createState() => _AddNewLinkState();
+  State<EditLinkScreen> createState() => _EditLinkScreenState();
 }
 
-class _AddNewLinkState extends State<AddNewLink> {
+class _EditLinkScreenState extends State<EditLinkScreen> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController titleController = TextEditingController();
   TextEditingController linkController = TextEditingController();
   TextEditingController userNameController = TextEditingController();
 
-  void addlink() async {
-    if (_formKey.currentState!.validate()) {
-      addNewLink({
-        'title': titleController.text,
-        'link': linkController.text,
-        'username': userNameController.text
-      }).then((value) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-            "link add",
-            style: TextStyle(color: Colors.white),
-          ),
-        ));
-      }).catchError((err) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-            err.toString(),
-            style: const TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Colors.red,
-        ));
-      });
-    }
+  @override
+  void initState() {
+    titleController.text = widget.link.title!;
+    linkController.text = widget.link.link!;
+    userNameController.text = "${widget.link.username!} ";
+    super.initState();
   }
 
   @override
@@ -111,7 +102,31 @@ class _AddNewLinkState extends State<AddNewLink> {
               const SizedBox(
                 height: 24,
               ),
-              SecondaryButtonWidget(onTap: addlink, text: 'ADD'),
+              SecondaryButtonWidget(
+                  onTap: () {
+                    updateLink({
+                      'title': titleController.text,
+                      'link': linkController.text,
+                      'username': userNameController.text
+                    }, widget.link.id!)
+                        .then((value) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text(
+                          "link updated",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ));
+                    }).catchError((err) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(
+                          err.toString(),
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        backgroundColor: Colors.red,
+                      ));
+                    });
+                  },
+                  text: 'SAVE'),
               const Spacer()
             ],
           ),

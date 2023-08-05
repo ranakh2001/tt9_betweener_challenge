@@ -27,10 +27,35 @@ Future<List<Link>> getLinks(context) async {
 }
 
 Future<void> addNewLink(Map<String, String> body) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
   User user = userFromJson(prefs.getString('user')!);
-  final response = await http.post(Uri.parse(linksUrl), body: body,headers: {'Authorization': "Bearer ${user.token}"});
+  final response = await http.post(Uri.parse(linksUrl),
+      body: body, headers: {'Authorization': "Bearer ${user.token}"});
   if (response.statusCode == 200) {
+  } else {
+    return Future.error("Something wrong");
+  }
+}
+
+Future<void> updateLink(Map<String, String> body, int id) async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  User user = userFromJson(prefs.getString('user')!);
+  http.Response response = await http.put(Uri.parse("$linksUrl/$id"),
+      body: body, headers: {'Authorization': "Bearer ${user.token}"});
+  if (response.statusCode == 200) {
+    print(response.body);
+  } else {
+    return Future.error("Something wrong");
+  }
+}
+
+Future<void> deleteLink( int id) async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  User user = userFromJson(prefs.getString('user')!);
+  http.Response response = await http.delete(Uri.parse("$linksUrl/$id"),
+      headers: {'Authorization': "Bearer ${user.token}"});
+  if (response.statusCode == 200) {
+    print(response.body);
   } else {
     return Future.error("Something wrong");
   }
