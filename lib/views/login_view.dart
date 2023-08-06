@@ -23,9 +23,23 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   void submitLogin() {
     if (_formKey.currentState!.validate()) {
@@ -42,7 +56,10 @@ class _LoginViewState extends State<LoginView> {
         }
       }).catchError((error) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(error.toString(),style: const TextStyle(color: Colors.white),),
+          content: Text(
+            error.toString(),
+            style: const TextStyle(color: Colors.white),
+          ),
           backgroundColor: Colors.red,
         ));
       });

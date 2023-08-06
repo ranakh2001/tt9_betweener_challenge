@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:tt9_betweener_challenge/models/searchUser.dart';
+import 'package:tt9_betweener_challenge/views/follow_screen.dart';
 
 import '../../constants.dart';
 import '../../models/follow.dart';
@@ -66,31 +68,63 @@ class UserContainer extends StatelessWidget {
                               if (snapshot.hasData) {
                                 return Row(
                                   children: [
-                                    Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: kSecondaryColor),
-                                      child: Text(
-                                        "followers ${snapshot.data!.followersCount}",
-                                        style: const TextStyle(
-                                            color: kPrimaryColor),
+                                    GestureDetector(
+                                      onTap: () {
+                                        List<SearchUser> users = List.generate(
+                                            snapshot.data!.followers!.length,
+                                            (index) => SearchUser.fromJson(
+                                                snapshot
+                                                    .data!.followers![index]));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    FollowScreen(
+                                                        title: 'Followers',
+                                                        users: users)));
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: kSecondaryColor),
+                                        child: Text(
+                                          "followers ${snapshot.data!.followersCount}",
+                                          style: const TextStyle(
+                                              color: kPrimaryColor),
+                                        ),
                                       ),
                                     ),
                                     const SizedBox(
                                       width: 4,
                                     ),
-                                    Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: kSecondaryColor),
-                                      child: Text(
-                                        "following ${snapshot.data!.followingCount}",
-                                        style: const TextStyle(
-                                            color: kPrimaryColor),
+                                    GestureDetector(
+                                      onTap: () {
+                                        List<SearchUser> users = List.generate(
+                                            snapshot.data!.following!.length,
+                                            (index) => SearchUser.fromJson(
+                                                snapshot
+                                                    .data!.following![index]));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    FollowScreen(
+                                                        title: 'Following',
+                                                        users: users)));
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: kSecondaryColor),
+                                        child: Text(
+                                          "following ${snapshot.data!.followingCount}",
+                                          style: const TextStyle(
+                                              color: kPrimaryColor),
+                                        ),
                                       ),
                                     )
                                   ],

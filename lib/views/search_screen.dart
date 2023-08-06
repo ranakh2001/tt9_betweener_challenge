@@ -88,8 +88,8 @@ class CustomSearchDelegate extends SearchDelegate {
         future: searchByName({'name': query}),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Center(
+              child: Container(),
             );
           }
           if (snapshot.hasData) {

@@ -22,16 +22,27 @@ class EditLinkScreen extends StatefulWidget {
 
 class _EditLinkScreenState extends State<EditLinkScreen> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController titleController = TextEditingController();
-  TextEditingController linkController = TextEditingController();
-  TextEditingController userNameController = TextEditingController();
+  late TextEditingController titleController;
+  late TextEditingController linkController;
+  late TextEditingController userNameController;
 
   @override
   void initState() {
+    titleController = TextEditingController();
+    linkController = TextEditingController();
+    userNameController = TextEditingController();
     titleController.text = widget.link.title!;
     linkController.text = widget.link.link!;
     userNameController.text = "${widget.link.username!} ";
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    linkController.dispose();
+    userNameController.dispose();
+    super.dispose();
   }
 
   @override

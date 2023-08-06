@@ -14,9 +14,25 @@ class AddNewLink extends StatefulWidget {
 
 class _AddNewLinkState extends State<AddNewLink> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController titleController = TextEditingController();
-  TextEditingController linkController = TextEditingController();
-  TextEditingController userNameController = TextEditingController();
+  late TextEditingController titleController;
+  late TextEditingController linkController;
+  late TextEditingController userNameController;
+
+  @override
+  void initState() {
+    titleController = TextEditingController();
+    linkController = TextEditingController();
+    userNameController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    linkController.dispose();
+    userNameController.dispose();
+    super.dispose();
+  }
 
   void addlink() async {
     if (_formKey.currentState!.validate()) {

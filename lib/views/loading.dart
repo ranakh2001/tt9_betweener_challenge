@@ -15,13 +15,12 @@ class LoadingView extends StatefulWidget {
 class _LoadingViewState extends State<LoadingView> {
   void checklogin() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.containsKey('firstTime') && mounted) {
+    if (!prefs.containsKey('firstTime') && mounted) {
       Navigator.pushReplacementNamed(context, OnBoardingView.id);
-    }
-    else if (prefs.containsKey('user') && mounted) {
-      Navigator.pushNamed(context, MainAppView.id);
+    } else if (prefs.containsKey('user') && mounted) {
+      Navigator.pushReplacementNamed(context, MainAppView.id);
     } else {
-      Navigator.pushNamed(context, LoginView.id);
+      Navigator.pushReplacementNamed(context, LoginView.id);
     }
   }
 

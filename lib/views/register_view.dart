@@ -20,11 +20,11 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterView> {
-  TextEditingController nameController = TextEditingController();
+  late TextEditingController nameController;
 
-  TextEditingController emailController = TextEditingController();
+  late TextEditingController emailController;
 
-  TextEditingController passwordController = TextEditingController();
+  late TextEditingController passwordController;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -53,6 +53,22 @@ class _RegisterViewState extends State<RegisterView> {
         ));
       });
     }
+  }
+
+  @override
+  void initState() {
+    nameController = TextEditingController();
+    passwordController = TextEditingController();
+    emailController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
