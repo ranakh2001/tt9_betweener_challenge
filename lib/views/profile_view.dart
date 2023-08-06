@@ -62,6 +62,7 @@ class _ProfileViewState extends State<ProfileView> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: ListView.separated(
+                            shrinkWrap: true,
                             itemCount: snapshot.data!.length,
                             separatorBuilder: (contex, index) {
                               return const SizedBox(
@@ -72,7 +73,8 @@ class _ProfileViewState extends State<ProfileView> {
                               final link = snapshot.data?[index];
                               return Slidable(
                                   endActionPane: ActionPane(
-                                      motion: const StretchMotion(),
+                                      extentRatio: 0.5,
+                                      motion: const BehindMotion(),
                                       children: [
                                         SlidableAction(
                                           padding: EdgeInsets.zero,
