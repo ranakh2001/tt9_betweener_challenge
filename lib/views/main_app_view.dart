@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tt9_betweener_challenge/views/add_new_link.dart';
 import 'package:tt9_betweener_challenge/views/home_view.dart';
 import 'package:tt9_betweener_challenge/views/profile_view.dart';
 import 'package:tt9_betweener_challenge/views/receive_view.dart';
 import 'package:tt9_betweener_challenge/views/widgets/custom_floating_nav_bar.dart';
-
-import '../constants.dart';
 
 class MainAppView extends StatefulWidget {
   static String id = '/mainAppView';
@@ -33,7 +30,9 @@ class _MainAppViewState extends State<MainAppView> {
       bottomNavigationBar: CustomFloatingNavBar(
         currentIndex: _currentIndex,
         onTap: (index) {
-          _currentIndex = index;
+          setState(() {
+            _currentIndex = index;
+          });
         },
       ),
     );

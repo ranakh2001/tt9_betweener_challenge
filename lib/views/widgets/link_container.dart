@@ -31,7 +31,7 @@ class LinkContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "${link!.title}".toUpperCase(),
+                "${link.title}".toUpperCase(),
                 style: const TextStyle(fontSize: 16),
               ),
               Text(
