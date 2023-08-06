@@ -33,28 +33,9 @@ class _MainAppViewState extends State<MainAppView> {
       bottomNavigationBar: CustomFloatingNavBar(
         currentIndex: _currentIndex,
         onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
+          _currentIndex = index;
         },
       ),
-      floatingActionButton: _currentIndex == 2
-          ? FloatingActionButton(
-              shape: const CircleBorder(),
-              backgroundColor: kPrimaryColor,
-              onPressed: () {
-                Navigator.pushNamed(context, AddNewLink.id).then((value) {
-                  setState(() {
-                    _currentIndex = 2;
-                  });
-                });
-              },
-              child: const Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
-            )
-          : null,
     );
   }
 }

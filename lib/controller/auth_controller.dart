@@ -19,8 +19,7 @@ Future<User> register(Map<String, String> body) async {
     Uri.parse(registerUrl),
     body: body,
   );
-  print(response.statusCode);
-  if (response.statusCode == 200) {
+  if (response.statusCode == 201) {
     return userFromJson(response.body);
   } else {
     return Future.error("Failed to register");

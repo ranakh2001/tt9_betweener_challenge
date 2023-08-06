@@ -39,6 +39,7 @@ class _RegisterViewState extends State<RegisterView> {
       register(body).then((user) async {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('user', userToJson(user));
+        print(prefs.getString('user'));
         if (mounted) {
           Navigator.pushNamed(context, MainAppView.id);
         }
