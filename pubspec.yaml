@@ -41,6 +41,7 @@ dependencies:
   http:
   shared_preferences:
   flutter_slidable:
+  geolocator: ^9.0.2
 
 dev_dependencies:
   flutter_test:
