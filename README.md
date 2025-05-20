@@ -1,16 +1,17 @@
-# tt9_betweener_challenge
+Betweener is a streamlined Flutter application that allows users to store all their social and account links in one place and effortlessly share them with others. The app enhances social discovery by enabling users to find nearby individuals and view their shared profiles with ease.
 
-A new Flutter project.
+Designed with responsiveness in mind, LinkHub supports both light and dark themes and is fully localized in English and Arabic. Built using Riverpod for state management, the codebase is modular, scalable, and follows best practices for maintainable app architecture.
 
-## Getting Started
+Key Features:
+Account Link Management: Centralized storage and sharing of user accounts and social profiles.
 
-This project is a starting point for a Flutter application.
+Nearby Discovery: Easily explore and connect with nearby users and view their shared links.
 
-A few resources to get you started if this is your first Flutter project:
+Responsive Design: Optimized for various screen sizes with light and dark mode support.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+State Management with Riverpod: Ensures clean architecture and modular development.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Multilingual Support: Fully localized in Arabic and English for a seamless user experience.
+
+Clean & Scalable Codebase: Designed for reusability, flexibility, and long-term maintainability.
+
