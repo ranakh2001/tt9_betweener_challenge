@@ -3,15 +3,17 @@ Betweener is a streamlined Flutter application that allows users to store all th
 Designed with responsiveness in mind, LinkHub supports both light and dark themes and is fully localized in English and Arabic. Built using Riverpod for state management, the codebase is modular, scalable, and follows best practices for maintainable app architecture.
 
 Key Features:
-Account Link Management: Centralized storage and sharing of user accounts and social profiles.
+- Account Link Management: Centralized storage and sharing of user accounts and social profiles.
 
-Nearby Discovery: Easily explore and connect with nearby users and view their shared links.
+- Nearby Discovery: Easily explore and connect with nearby users and view their shared links.
 
-Responsive Design: Optimized for various screen sizes with light and dark mode support.
+- Responsive Design: Optimized for various screen sizes with light and dark mode support.
 
-State Management with Riverpod: Ensures clean architecture and modular development.
+- REST api: the app connected with backend smoothly and gets data.
 
-Multilingual Support: Fully localized in Arabic and English for a seamless user experience.
+- Multilingual Support: Fully localized in Arabic and English for a seamless user experience.
 
-Clean & Scalable Codebase: Designed for reusability, flexibility, and long-term maintainability.
+- Clean & Scalable Codebase: Designed for reusability, flexibility, and long-term maintainability.
+
+  ![Image](https://github.com/user-attachments/assets/ec02e61d-68c0-409d-b820-b1f5536ec32e)
 
